@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
+class Equipment:
+    def __init__(self, name, equipment_type, capacity, power, cost, section, equipment_subtype, area_depth, area_length, area_width):
+        self.name = name
+        self.equipment_type = equipment_type
+        self.capacity = capacity
+        self.power = power
+        self.cost = cost
+        self.section = section
+        self.equipment_subtype = equipment_subtype
+        self.area_depth = area_depth
+        self.area_length = area_length
+        self.area_width = area_width
+def simulate_mine_operations(drilling_data, hauling_data, construction_data):
+    # Drilling
+    for drill in drilling_data:
+        print(f"Simulating drilling with {drill.name} in {drill.section}: {drill.area_depth}, {drill.area_length}, {drill.area_width}.")
+    print("\nDrilling completed. Moving to Hauling...\n")
+    # Hauling
+    for truck in hauling_data:
+        print(f"Simulating hauling with {truck.name} in {truck.section}: {truck.area_depth}, {truck.area_length}, {truck.area_width}.")
+    print("\nHauling completed. Moving to Loading...\n")
+    # Loading
+    for loader in construction_data:
+        print(f"Simulating loading with {loader.name} in {loader.section}: {loader.area_depth}, {loader.area_length}, {loader.area_width}.")
+    print("\nLoading completed.\n")
+# Integration Testing
+def integration_test():
+    # CSV data
+    csv_data_drilling = """
+    Drill1,Rotary,2000m,4500kW,East,Surface,200m,1000m,800m
+    """
+    csv_data_hauling = """
+    Truck1,Diesel,100t,5850HP,East,Surface,200m,10250m,400m
+    """
+    csv_data_construction = """
+    Loader1,Electrical,12yd3,2000kW,West,Underground,800m,500m,10m
+    """
+    # Split CSV data into lines
+    lines_drilling = csv_data_drilling.strip().split('\n')
+    lines_hauling = csv_data_hauling.strip().split('\n')
+    lines_construction = csv_data_construction.strip().split('\n')
+    # Extract relevant information into lists of Equipment objects
+    drilling_data = [Equipment(*fields.split(',')) for fields in lines_drilling] #creates a list of equipment objects for drilling by ectracting through csv data
+    hauling_data = [Equipment(*fields.split(',')) for fields in lines_hauling]
+    construction_data = [Equipment(*fields.split(',')) for fields in lines_construction]
+    # Run the simulation step by step
+    simulate_mine_operations(drilling_data, hauling_data, construction_data)
+# Run integration test
+integration_test()
+
+
+
+
+
+
+
+
