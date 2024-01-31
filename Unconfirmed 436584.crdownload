@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+class Equipment:
+    def __init__(self, name, equipment_type, capacity, power, section, type_of_section, depth, length, width, utilization, mtbf, mttr):
+        self.name = name
+        self.equipment_type = equipment_type
+        self.capacity = capacity
+        self.power = power
+        self.section = section
+        self.type_of_section = type_of_section
+        self.depth = depth
+        self.length = length
+        self.width = width
+        self.utilization = utilization
+        self.mtbf = mtbf
+        self.mttr = mttr
+class Environment:
+    def __init__(self, region, location, underground_depth, mtbf_multiplier, mttr_reduction):
+        self.region = region
+        self.location = location
+        self.underground_depth = underground_depth
+        self.mtbf_multiplier = mtbf_multiplier
+        self.mttr_reduction = mttr_reduction
+
+
+# In[ ]:
+
+
+
+
