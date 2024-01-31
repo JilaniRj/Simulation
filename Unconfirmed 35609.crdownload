@@ -1,0 +1,347 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+#geology
+geology_data = [
+    {"Equipment": "Drill1", "Type": "Rotary", "Depth": 200, "Section": "East", "Type_of_Section": "Surface"},
+    {"Equipment": "Drill2", "Type": "Hammer", "Depth": 200, "Section": "East", "Type_of_Section": "Surface"},
+    {"Equipment": "Truck1", "Type": "Diesel", "Depth": 200, "Section": "East", "Type_of_Section": "Surface"},
+    {"Equipment": "Truck1", "Type": "Diesel", "Depth": 200, "Section": "East", "Type_of_Section": "Surface"},
+    {"Equipment": "Truck2", "Type": "Diesel", "Depth": 200, "Section": "East", "Type_of_Section": "Surface"},
+    {"Equipment": "Loader1", "Type": "Electrical", "Depth": 200, "Section": "West", "Type_of_Section": "Underground"},
+    {"Equipment": "Loader1", "Type": "Electrical", "Depth": 200, "Section": "West", "Type_of_Section": "Underground"},
+    {"Equipment": "Loader1", "Type": "Electrical", "Depth": 200, "Section": "West", "Type_of_Section": "Underground"},
+    {"Equipment": "Loader1", "Type": "Electrical", "Depth": 800, "Section": "West", "Type_of_Section": "Underground"},
+]
+geology_base_model = {}
+for entry in geology_data:
+    section = entry["Section"]
+    if section not in geology_base_model:
+        geology_base_model[section] = {"Surface": {}, "Underground": {}}
+    depth = entry["Depth"]
+    equipment_type = entry["Type_of_Section"]
+    if depth not in geology_base_model[section][equipment_type]:
+        geology_base_model[section][equipment_type][depth] = []
+    geology_base_model[section][equipment_type][depth].append(entry["Equipment"])
+print(geology_base_model)
+
+
+
+# In[2]:
+
+
+# Material properties - MM 
+class Equipment:
+    def __init__(self, equipment, mine, material, prod_date, work_hours, fuel_consumed, availability):
+        self.equipment = equipment
+        self.mine = mine
+        self.material = material
+        self.prod_date = prod_date
+        self.work_hours = work_hours
+        self.fuel_consumed = fuel_consumed
+        self.availability = availability
+    def display_info(self):
+        print(f"Equipment: {self.equipment}, Mine: {self.mine}, Material: {self.material}, "
+              f"Prod Date: {self.prod_date}, Work Hours: {self.work_hours}, Fuel Consumed: {self.fuel_consumed}, "
+              f"Availability: {self.availability}")
+class Blasting:
+    def __init__(self, date, block_id, blasts_done, explosives_used, overburden_removed, ore_extracted):
+        self.date = date
+        self.block_id = block_id
+        self.blasts_done = blasts_done
+        self.explosives_used = explosives_used
+        self.overburden_removed = overburden_removed
+        self.ore_extracted = ore_extracted
+    def display_info(self):
+        print(f"Date: {self.date}, Block ID: {self.block_id}, Blasts Done: {self.blasts_done}, "
+              f"Explosives Used: {self.explosives_used}, Overburden Removed: {self.overburden_removed}, "
+              f"Ore Extracted: {self.ore_extracted}")
+class MineMaterial:
+    def __init__(self, mine, equipment, material_mined, total_ore, average_grade, total_waste, stripping_ratio):
+        self.mine = mine
+        self.equipment = equipment
+        self.material_mined = material_mined
+        self.total_ore = total_ore
+        self.average_grade = average_grade
+        self.total_waste = total_waste
+        self.stripping_ratio = stripping_ratio
+    def display_info(self):
+        print(f"Mine: {self.mine}, Equipment: {self.equipment}, Material Mined: {self.material_mined}, "
+              f"Total Ore: {self.total_ore}, Average Grade: {self.average_grade}, "
+              f"Total Waste: {self.total_waste}, Stripping Ratio: {self.stripping_ratio}")
+# Example usage:
+equipment_data = Equipment("CAT996 Loader", "HZL", "Zinc Conc.", "10-Feb-23", "8 hours", "210 gal diesel", "92%")
+blasting_data = Blasting("13-Feb-23", "A1-east", "3 blast", "4500 kg ANFO", "96000 T OB", "35800 T ore")
+mine_material_data = MineMaterial("Utkal Zinc", "Backhoe", "Zinc Ore", "358 T", "7.80%", "74 T", "0.21")
+# Displaying information for the created instances
+equipment_data.display_info()
+blasting_data.display_info()
+mine_material_data.display_info()
+
+
+# In[4]:
+
+
+#Mine Plans - Equipment - To use equipment data "class Equipment:
+    def __init__(self, equipment, mine, material, prod_date, work_hours, fuel_consumed, availability):
+        self.equipment = equipment
+        self.mine = mine
+        self.material = material
+        self.prod_date = prod_date
+        self.work_hours = work_hours
+        self.fuel_consumed = fuel_consumed
+        self.availability = availability
+class MinePlan:
+    def __init__(self):
+        self.equipment_list = []
+    def add_equipment(self, equipment):
+        self.equipment_list.append(equipment)
+    def generate_mine_plan(self):
+        for equipment in self.equipment_list:
+            print(f"Mine Plan for {equipment.equipment} in {equipment.mine}:")
+            print(f"- Use {equipment.equipment} to mine {equipment.material}.")
+            print(f"- Operating hours: {equipment.work_hours}, Fuel consumed: {equipment.fuel_consumed}.")
+            print(f"- Availability: {equipment.availability}\n")
+# Example usage:
+mine_plan = MinePlan()
+# Adding equipment instances based on the provided data
+mine_plan.add_equipment(Equipment("CAT996 Loader", "HZL", "Zinc Conc.", "10-Feb-23", "8 hours", "210 gal diesel", "92%"))
+mine_plan.add_equipment(Equipment("Komatsu Dump Truck", "Geoth Mines", "Iron Ore", "13-Feb-23", "7 hours", "160 gal diesel", "100%"))
+mine_plan.add_equipment(Equipment("backhoe", "Utkal Zinc", "Zinc Ore", "", "", "", ""))
+mine_plan.add_equipment(Equipment("scraper", "Geoth Minerals", "Iron Ore", "", "", "", ""))
+mine_plan.add_equipment(Equipment("CAT 785C Truck1", "", "", "", "", "", ""))
+mine_plan.add_equipment(Equipment("Komatsu 860E Truck2", "", "", "", "", "", ""))
+mine_plan.add_equipment(Equipment("Loader L-101", "", "Iron Ore", "01-Mar-23", "10", "150 min", ""))
+mine_plan.add_equipment(Equipment("Loader L-102", "", "Iron Ore", "02-Mar-23", "10", "180 min", ""))
+mine_plan.add_equipment(Equipment("Excavator 300 RDExcavator01", "", "Clay", "05-Mar-23", "107", "12500kg", ""))
+mine_plan.add_equipment(Equipment("CAT 785C Truck1", "", "", "", "", "", ""))
+mine_plan.add_equipment(Equipment("Komatsu 860E Truck2", "", "", "", "", "", ""))
+mine_plan.add_equipment(Equipment("PC200 CAT Excavator", "", "Iron Ore", "12-Feb-23", "", "", ""))
+mine_plan.add_equipment(Equipment("40T CAT Dump Truck", "", "Iron Ore", "15-Feb-23", "", "", ""))
+mine_plan.add_equipment(Equipment("Shovel 1", "Vasanth Coal Mine", "Overburden", "01-01-2023", "8", "5000", ""))
+mine_plan.add_equipment(Equipment("Truck 1", "Vasanth Coal Mine", "Coal", "01-01-2023", "8", "800", ""))
+mine_plan.add_equipment(Equipment("Shovel 1", "Reddy Coal Mine", "Overburden", "01-02-2023", "8", "5000", ""))
+mine_plan.add_equipment(Equipment("Truck 2", "Reddy Coal Mine", "Coal", "01-02-2023", "8", "800", ""))
+mine_plan.add_equipment(Equipment("Dragline 1", "RP Minerals", "Overburden", "01-05-2023", "10", "7000", ""))
+mine_plan.add_equipment(Equipment("Truck 1", "RP Minerals", "Coal", "01-05-2023", "10", "900", ""))
+# Generating and displaying the mine plan
+mine_plan.generate_mine_plan()
+
+
+
+
+
+# In[11]:
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import simps
+# Assuming your data is a list of dictionaries
+equipment_data = [
+    {'Equipment': 'Drill1', 'Type of equipment': 'Rotary', 'Capacity': '2000m', 'Power': '4500kW', 'Section': 'East', 'Type of section': 'Surface', 'Depth': '200m', 'Length': '1000m', 'Width': '800m', 'Utilization': 0.6, 'MTBF': '300hrs', 'MTTR': '2 days'},
+    {'Equipment': 'Drill2', 'Type of equipment': 'Hammer', 'Capacity': '1500m', 'Power': '3500kW', 'Section': 'East', 'Type of section': 'Surface', 'Depth': '200m', 'Length': '1000m', 'Width': '800m', 'Utilization': 0.75, 'MTBF': '200hrs', 'MTTR': '1 day'},
+    # Add more equipment data
+]
+# Convert the list of dictionaries to a DataFrame
+equipment_data = pd.DataFrame(equipment_data)
+# Display the column names to identify the correct one
+print(equipment_data.columns)
+# Check for any leading or trailing whitespaces in column names
+equipment_data.columns = equipment_data.columns.str.strip()
+# Simulating variance over time for 'Utilization'
+np.random.seed(42)  # for reproducibility
+equipment_data['Utilization'] = np.random.normal(equipment_data['Utilization'], 0.1)
+# Convert 'MTBF' to numeric after removing 'hrs'
+equipment_data['MTBF'] = pd.to_numeric(equipment_data['MTBF'].str.replace('hrs', ''), errors='coerce')
+# Convert 'MTTR' to numeric after removing 'days'
+equipment_data['MTTR'] = pd.to_numeric(equipment_data['MTTR'].str.replace('days', ''), errors='coerce')
+# Simulating variance over time for 'MTBF'
+equipment_data['MTBF'] = np.random.normal(equipment_data['MTBF'], 10)
+# Simulating variance over time for 'MTTR'
+equipment_data['MTTR'] = np.random.normal(equipment_data['MTTR'], 0.5)
+# Integration part
+area_utilization = simps(equipment_data['Utilization'], dx=1)
+area_mtbf = simps(equipment_data['MTBF'], dx=1)
+area_mttr = simps(equipment_data['MTTR'], dx=1)
+print("Area under Utilization curve:", area_utilization)
+print("Area under MTBF curve:", area_mtbf)
+print("Area under MTTR curve:", area_mttr)
+
+
+
+# In[12]:
+
+
+#4. create variance of simulation and time and do the integration part
+import numpy as np
+from scipy.integrate import simps
+import pandas as pd
+# Assuming your data is stored in a DataFrame named 'equipment_data'
+# Display the relevant equipment details
+print(equipment_data[['Equipment', 'Type of equipment', 'Capacity']])
+# Simulating variance over time for 'Utilization'
+equipment_data['Utilization'] = np.random.normal(equipment_data['Utilization'], 0.1)
+# Simulating variance over time for 'MTBF'
+equipment_data['MTBF'] = np.random.normal(equipment_data['MTBF'], 10)
+# Simulating variance over time for 'MTTR'
+equipment_data['MTTR'] = np.random.normal(equipment_data['MTTR'], 0.5)
+# Display the areas under the curves
+print("Area under Utilization curve:", simps(equipment_data['Utilization'], dx=1))
+print("Area under MTBF curve:", simps(equipment_data['MTBF'], dx=1))
+print("Area under MTTR curve:", simps(equipment_data['MTTR'], dx=1))
+
+
+# In[14]:
+
+
+# Equipment performance improvement scenarios
+import pandas as pd
+# Create a DataFrame with the provided equipment data
+data = {
+    'Equipment': ['Drill1', 'Drill2', 'Truck1', 'Truck1', 'Truck2', 'Loader1', 'Loader1', 'Loader1', 'Loader1'],
+    'Type of equipment': ['Rotary', 'Hammer', 'Diesel', 'Diesel', 'Diesel', 'Electrical', 'Electrical', 'Electrical', 'Electrical'],
+    'Capacity': ['2000m', '1500m', '100t', '100t', '100t', '12yd3', '12yd3', '12yd3', '12yd3'],
+    'Power': ['4500kW', '3500kW', '5850HP', '5850HP', '5850HP', '2000kW', '2000kW', '2000kW', '2000kW'],
+    'Section': ['East', 'East', 'East', 'East', 'East', 'West', 'West', 'West', 'West'],
+    'Type of section': ['Surface', 'Surface', 'Surface', 'Surface', 'Surface', 'Underground', 'Underground', 'Underground', 'Underground'],
+    'Depth': [200, 200, 200, 200, 200, 200, 200, 200, 800],
+    'Length': [1000, 1000, 10250, 12080, 10250, 12081, 10250, 10250, 500],
+    'Width': [800, 800, 400, 400, 400, 400, 400, 400, 10],
+    'Utilization': [0.6, 0.75, 0.6, 0.6, 0.6, 0.6, 0.75, 0.9, 1.05],
+    'MTBF': [300, 200, 300, 300, 300, 300, 200, 200, 200],
+    'MTTR': ['2 days', '1 day', '2 days', '2 days', '2 days', '2 days', '1 day', '2 days', '2 days']
+}
+equipment_df = pd.DataFrame(data)
+# 1. Introduction
+"""
+Provide an overview of the current state of equipment performance and the importance of improvement.
+Briefly introduce the equipment in question.
+"""
+# 2. Current Equipment Performance
+"""
+Detail the existing performance metrics, including utilization, MTBF, MTTR, and any other relevant parameters.
+Present any identified issues or challenges affecting performance.
+"""
+print("Current Equipment Performance:")
+print(equipment_df)
+# 3. Identified Improvement Areas
+"""
+Highlight specific areas where performance improvement is needed.
+This could include high MTTR, low utilization, or other key performance indicators.
+"""
+identified_issues = equipment_df[(equipment_df['Utilization'] < 0.7) | (equipment_df['MTTR'] == '2 days')]
+print("\nIdentified Improvement Areas:")
+print(identified_issues)
+# 4. Proposed Improvement Scenarios
+"""
+Outline different improvement scenarios, considering factors such as:
+a. Utilization Enhancement: Strategies to increase equipment utilization, such as optimizing scheduling or workflow.
+b. MTBF Improvement: Introduce measures to enhance Mean Time Between Failures, like preventive maintenance programs or technological upgrades.
+c. MTTR Reduction: Propose methods to decrease Mean Time To Repair, including training programs or enhanced maintenance procedures.
+"""
+# Example: Placeholder for improvement scenarios
+utilization_enhancement_scenario = {
+    "Optimize Scheduling": identified_issues['Equipment'].tolist(),
+}
+mtbf_improvement_scenario = {
+    "Preventive Maintenance Program": identified_issues['Equipment'].tolist(),
+}
+mttr_reduction_scenario = {
+    "Enhanced Maintenance Procedures": identified_issues['Equipment'].tolist(),
+}
+# Display improvement scenarios
+print("\nProposed Improvement Scenarios:")
+print(f"a. Utilization Enhancement: {utilization_enhancement_scenario}")
+print(f"b. MTBF Improvement: {mtbf_improvement_scenario}")
+print(f"c. MTTR Reduction: {mttr_reduction_scenario}")
+
+
+
+
+# In[15]:
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+# Your equipment data
+data = {
+    'Equipment': ['Drill1', 'Drill2', 'Truck1', 'Truck1', 'Truck2', 'Loader1', 'Loader1', 'Loader1', 'Loader1'],
+    'Type of equipment': ['Rotary', 'Hammer', 'Diesel', 'Diesel', 'Diesel', 'Electrical', 'Electrical', 'Electrical', 'Electrical'],
+    'Capacity': [2000, 1500, 100, 100, 100, 12, 12, 12, 12],
+    'Power': [4500, 3500, 5850, 5850, 5850, 2000, 2000, 2000, 2000],
+    'Section': ['East', 'East', 'East', 'East', 'East', 'West', 'West', 'West', 'West'],
+    'Type of section': ['Surface', 'Surface', 'Surface', 'Surface', 'Surface', 'Underground', 'Underground', 'Underground', 'Underground'],
+    'Depth': [200, 200, 200, 200, 200, 200, 200, 200, 800],
+    'Length': [1000, 1000, 10250, 12080, 10250, 12081, 10250, 10250, 500],
+    'Width': [800, 800, 400, 400, 400, 400, 400, 400, 10],
+    'Utilization': [0.6, 0.75, 0.6, 0.6, 0.6, 0.6, 0.75, 0.9, 1.05],
+    'MTBF': [300, 200, 300, 300, 300, 300, 200, 200, 200],
+    'MTTR': ['2 days', '1 day', '2 days', '2 days', '2 days', '2 days', '1 day', '2 days', '2 days']
+}
+df = pd.DataFrame(data)
+# Plotting
+fig, ax = plt.subplots(figsize=(10, 6))
+# Example: Plotting equipment utilization in East vs West
+east_data = df[df['Section'] == 'East']
+west_data = df[df['Section'] == 'West']
+ax.scatter(east_data['Utilization'], east_data['MTBF'], label='East', color='blue')
+ax.scatter(west_data['Utilization'], west_data['MTBF'], label='West', color='green')
+ax.set_xlabel('Utilization')
+ax.set_ylabel('MTBF')
+ax.set_title('Equipment Utilization vs MTBF in East and West Sections')
+ax.legend()
+plt.show()
+
+
+# In[16]:
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+# Your equipment data
+data = {
+    'Equipment': ['Drill1', 'Drill2', 'Truck1', 'Truck1', 'Truck2', 'Loader1', 'Loader1', 'Loader1', 'Loader1'],
+    'Type of equipment': ['Rotary', 'Hammer', 'Diesel', 'Diesel', 'Diesel', 'Electrical', 'Electrical', 'Electrical', 'Electrical'],
+    'Capacity': [2000, 1500, 100, 100, 100, 12, 12, 12, 12],
+    'Power': [4500, 3500, 5850, 5850, 5850, 2000, 2000, 2000, 2000],
+    'Section': ['East', 'East', 'East', 'East', 'East', 'West', 'West', 'West', 'West'],
+    'Type of section': ['Surface', 'Surface', 'Surface', 'Surface', 'Surface', 'Underground', 'Underground', 'Underground', 'Underground'],
+    'Depth': [200, 200, 200, 200, 200, 200, 200, 200, 800],
+    'Length': [1000, 1000, 10250, 12080, 10250, 12081, 10250, 10250, 500],
+    'Width': [800, 800, 400, 400, 400, 400, 400, 400, 10],
+    'Utilization': [0.6, 0.75, 0.6, 0.6, 0.6, 0.6, 0.75, 0.9, 1.05],
+    'MTBF': [300, 200, 300, 300, 300, 300, 200, 200, 200],
+    'MTTR': ['2 days', '1 day', '2 days', '2 days', '2 days', '2 days', '1 day', '2 days', '2 days']
+}
+df = pd.DataFrame(data)
+# Plotting Capacity
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.bar(df['Equipment'], df['Capacity'])
+ax.set_ylabel('Capacity')
+ax.set_title('Equipment Capacity')
+plt.show()
+# Plotting Power
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.bar(df['Equipment'], df['Power'])
+ax.set_ylabel('Power')
+ax.set_title('Equipment Power')
+plt.show()
+# Plotting Depth
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.hist(df['Depth'], bins=10, edgecolor='black')
+ax.set_xlabel('Depth')
+ax.set_ylabel('Frequency')
+ax.set_title('Equipment Depth Distribution')
+plt.show()
+
+
+# In[ ]:
+
+
+
+
