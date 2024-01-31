@@ -1,0 +1,15 @@
+Drill data,,,,,,,,,,,
+Equipment,Type of equipment,Capacity,Power,Section,Type of section,Depth,Length,Width,Utilization,MTBF,MTTR
+Drill1,Rotary,2000m,4500kW,East,Surface,200m,1000m,800m,0.6,300hrs,2 days
+Drill2,Hammer,1500m,3500kW,East,Surface,200m,1000m,800m,0.75,200hrs,1 day
+,,,,,,,,,,,
+Truck data,,,,,,,,,,,
+Truck1,Diesel,100t,5850HP,East,Surface,200m,10250m,400m ,0.6,300hrs,2 days
+Truck1,Diesel,100t,5850HP,East,Surface,200m,12080,400m ,0.6,300hrs,2 days
+Truck2,Diesel,100t,5850HP,East,Surface,200m,10250m,400m ,0.6,300hrs,2 days
+,,,,,,,,,,,
+Loader data,,,,,,,,,,,
+Loader1,Electrical,12yd3,2000kW,West,Underground,200m,12081,400m ,0.6,300hrs,2 days
+Loader1,Electrical,12yd3,2000kW,West,Underground,200m,10250m,400m ,0.75,200hrs,1 day
+Loader1,Electrical,12yd3,2000kW,West,Underground,200m,10250m,400m ,0.9,200hrs,2 days
+Loader1,Electrical,12yd3,2000kW,West,Underground,800m,500m,10m,1.05,200hrs,2 days

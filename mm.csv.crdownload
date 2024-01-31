@@ -1,0 +1,51 @@
+Equipment,Mine,Material,ProdDate,WorkHours,FuelConsumed,Availability  ,,,
+CAT996 Loader,HZL,zinc conc.,10-Feb-23,8 hours, 210 gal diesel,92%,,,
+Komatsu Dump Truck,Geoth Mines,iron ore, 13-feb-23,7 hours, 160 gal diesel,100%,,,
+,,,,,,,,,
+Date,BlockID,BlastsDone,ExplosivesUsed,OverburdenRemoved,OreExtracted ,,,,
+13-Feb-23,A1-east,3 blast, 4500 kg ANFO, 96000 T OB, 35800 T ore,,,,
+15-Feb-23,B7-south,2 blast, 2100 kg emulsion, 45000 T OB, 18250 T ore,,,,
+,,,,,,,,,
+Mine,Equipment,MaterialMined,TotalOre,AverageGrade,TotalWaste,StrippingRatio,,,
+Utkal Zinc, backhoe, zinc ore, 358 T,7.80%, 74 T,0.21,,,
+Geoth Minerals, scraper, iron ore, 1257 T,62% Fe, 201 T,0.16,,,
+,,,,,,,,,
+Equipment,Type,Utilization,Operator,FuelConsumed,DistanceTravelled,MaterialMoved,,,
+Truck1, CAT 785C,75%,Rohit Sharma, 210 gal, 800 km, 1900 T,,,
+Truck2, Komatsu 860E,58%,Nisha Yadav, 160 gal, 560 km, 1250 T,,,
+,,,,,,,,,
+Date,LoaderID,Operator,Material,LoadsCompleted,AvgLoadTime,TotalLoadTime,,,
+01-Mar-23,L-101,Rahul Srivastava,Iron Ore,10,15 min,150 min,,,
+02-Mar-23,L-102,Deepika Padukone,Iron Ore,10,18 min,180 min,,,
+,,,,,,,,,
+PeriodStart,PeriodEnd,MineID,TotalGoldOre,AvgGoldGrade,TotalSilverOre,AvgSilverGrade,TotalGems ,,
+01-Feb-23,28-Feb-23,lig12,11556,4.56 g/t,365722,92 g/t,83000 carats,,
+,,,,,,,,,
+Mine,Equipment,Material,DateOfMaintenance,HoursOperated,LastMaintenanceDate,NextMaintenanceDate,,,
+Utkal Galena Mine, 100T Dump Truck,Lead ore, 01-Mar-2023,875, 01-Feb-2023, 01-Apr-2023,,,
+,,,,,,,,,
+EquipmentID,EquipmentType,MaterialMoved,MoveDate,LoadCount,AvgLoadTrips,TotalMoved ,,,
+RDExcavator01,Excavator 300,Clay,05-Mar-23,107,12500kg,1337500kg,,,
+,,,,,,,,,
+Shifts,Loader1,Loader2,Loader3,Truck1,Truck2,Truck3,Truck4,,
+Night Shift,12600kg,19,500kg,16,800kg,15,700kg,13,200kg  
+Day Shift,10,500kg,9000kg,14,500kg,12,000kg,22,100kg
+,,,,,,,,,
+Date,MineName,Material,NoOfBlasts,ExplosivesUsed,OverburdenRemoved,OreAccessible,,,
+10-Mar-23,Hindustan Zinc Ltd,Zinc/Silver,3,9375kg,156000 metric ton,32500 metric ton,,,
+,,,,,,,,,
+Mine,EquipmentDesignation,EquipmentCategory,Material,AvgUtilizationPct,BreakdownHours,Operator,,,
+Maharashtra Minerals,EXV323,Excavator,Coal,63%,3,Amar Patel,,,
+Maharashtra Minerals,DT452,35T Dump Truck,Soil,78%,0,Reena Matthew,,,
+,,,,,,,,,
+ReportDate,HeavyEquipment,Operator,MaterialType,NoOfLoads,AvgLoadWeight,TotalWeightMaterial Moved,,,
+12-Feb-23,PC200 CAT Excavator,Rahul Shrivastav,Iron Ore,105,12500kg,1312500kg,,,
+15-Feb-23,40T CAT Dump Truck,Deepali Nair,Iron Ore,68,12200 kg,821600kg,,,
+,,,,,,,,,
+Date,Mine,Equipment,Material,Shift,Operator,Address,Hours_Worked,Target_TPH,Actual_TPH
+01-01-2023,Vasanth Coal Mine,Shovel 1,Overburden,Day,Ramesh Patel,221B Baker Street ,8,5000,4735
+01-01-2023,Vasanth Coal Mine,Truck 1,Coal,Day,Aditya Deshmukh,50 Laxmi Nagar,8,800,725
+01-02-2023,Reddy Coal Mine,Shovel 1,Overburden,Night,Vijay Kumar,144 Golf Club Road,8,5000,4210
+01-02-2023,Reddy Coal Mine,Truck 2,Coal,Night,Priya Sharma, multiline,8,800,855
+01-05-2023,RP Minerals,Dragline 1,Overburden,Day,Rahul Jain,G-13 Govt. Complex,10,7000,6320
+01-05-2023,RP Minerals,Truck 1,Coal,Day,Ankit Desai,B-302 Solaris,10,900,1050

@@ -1,0 +1,7 @@
+Date,Mine,Equipment,Material,Shift,Operator,Address,Hours_Worked,Target_TPH,Actual_TPH
+01-01-2023,Vasanth Coal Mine,Shovel 1,Overburden,Day,Ramesh Patel,221B Baker Street ,8,5000,4735
+01-01-2023,Vasanth Coal Mine,Truck 1,Coal,Day,Aditya Deshmukh,50 Laxmi Nagar,8,800,725
+01-02-2023,Reddy Coal Mine,Shovel 1,Overburden,Night,Vijay Kumar,144 Golf Club Road,8,5000,4210
+01-02-2023,Reddy Coal Mine,Truck 2,Coal,Night,Priya Sharma, multiline,8,800,855
+01-05-2023,RP Minerals,Dragline 1,Overburden,Day,Rahul Jain,G-13 Govt. Complex,10,7000,6320
+01-05-2023,RP Minerals,Truck 1,Coal,Day,Ankit Desai,B-302 Solaris,10,900,1050
