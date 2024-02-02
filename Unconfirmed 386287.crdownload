@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import csv
+class Equipment:
+    def __init__(self, name, equipment_type, capacity, power, section, area_depth, area_length, area_width, utilization, mtbf, mttr):
+        self.name = name
+        self.type = equipment_type
+        self.capacity = capacity
+        self.power = power
+        self.section = section
+        self.area_depth = area_depth
+        self.area_length = area_length
+        self.area_width = area_width
+        self.utilization = utilization
+        self.mtbf = mtbf
+        self.mttr = mttr
+    def get_equipment_specs(self):
+        return {
+            'type': self.type,
+            'capacity': self.capacity,
+            'power': self.power,
+            'section': self.section,
+            'area_depth': self.area_depth,
+            'area_length': self.area_length,
+            'area_width': self.area_width,
+            'utilization': self.utilization,
+            'mtbf': self.mtbf,
+            'mttr': self.mttr
+        }
+# Read equipment data from CSV file (replace 'read_data_from_file' with your actual function)
+def read_equipment_data_from_file(file_path):
+    with open(file_path, 'r') as csv_file:
+        reader = csv.DictReader(csv_file)
+        data = []
+        for row in reader:
+            data.append(row)
+        return data
+# Read equipment data from CSV file
+equipment_data = read_equipment_data_from_file('simulation8.csv')
+# Initialize Equipment
+equipments = []
+for row in equipment_data:
+    equipment = Equipment(
+        name=row['Equipment'],
+        equipment_type=row['Type'],
+        capacity=row['Capacity'],
+        power=row['Power'],
+        section=row['Section'],
+        area_depth=row['Depth'],
+        area_length=row['Length'],
+        area_width=row['Width'],
+        utilization=row['Utilization'],
+        mtbf=row['MTBF'],
+        mttr=row['MTTR']
+    )
+    equipments.append(equipment)
+# Print capacity and power specs for each equipment simulation
+for i, equipment in enumerate(equipments):
+    equipment_specs = equipment.get_equipment_specs()
+    print(f"Equipment Simulation {i + 1}: ")
+    print(f"Name: {equipment.name}")
+    print(f"Type: {equipment_specs['type']}")
+    print(f"Capacity: {equipment_specs['capacity']}")
+    print(f"Power: {equipment_specs['power']}")
+    print()
+
+
+
+
+
+# In[ ]:
+
+
+
+
