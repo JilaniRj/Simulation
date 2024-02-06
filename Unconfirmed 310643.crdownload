@@ -1,0 +1,83 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+class Equipment:
+    def __init__(self, name, equipment_type, capacity, power, section, equip_type, depth, length, width, utilized_by, utilization, mtbf, mttr):
+        self.name = name
+        self.equipment_type = equipment_type
+        self.capacity = capacity
+        self.power = power
+        self.section = section
+        self.equip_type = equip_type
+        self.depth = depth
+        self.length = length
+        self.width = width
+        self.utilized_by = utilized_by
+        self.utilization = utilization
+        self.mtbf = mtbf
+        self.mttr = mttr
+    def display_specs(self):
+        print(f"{self.name} - {self.equipment_type}")
+        print(f"Capacity: {self.capacity}, Power: {self.power}")
+        print(f"Section: {self.section}, Type: {self.equip_type}")
+        print(f"Dimensions: Depth - {self.depth}, Length - {self.length}, Width - {self.width}")
+        print(f"Utilized by: {self.utilized_by}")
+        print(f"Utilization: {self.utilization}, MTBF: {self.mtbf}, MTTR: {self.mttr}")
+        print()
+class Environment:
+    def __init__(self, section, env_type, depth, length, width):
+        self.section = section
+        self.env_type = env_type
+        self.depth = depth
+        self.length = length
+        self.width = width
+    def display_specs(self):
+        print(f"Environment - {self.env_type}")
+        print(f"Section: {self.section}, Type: {self.env_type}")
+        print(f"Dimensions: Depth - {self.depth}, Length - {self.length}, Width - {self.width}")
+        print()
+# Data from simulation8.csv
+equipment_data = [
+    ["Drill1", "Rotary", "2000m", "4500kW", "East", "Surface", "200m", "1000m", "800m", "Drill1", "0.6", "300hrs", "2 days"],
+    ["Drill2", "Hammer", "1500m", "3500kW", "East", "Surface", "200m", "1000m", "800m", "Truck1", "0.75", "200hrs", "1 day"],
+    ["Truck1", "Diesel", "100t", "5850HP", "East", "Surface", "200m", "10250m", "400m", "Drill1", "0.6", "300hrs", "2 days"],
+    ["Truck1", "Diesel", "100t", "5850HP", "East", "Surface", "200m", "12080", "400m", "Drill1", "0.6", "300hrs", "2 days"],
+    ["Truck2", "Diesel", "100t", "5850HP", "East", "Surface", "200m", "10250m", "400m", "Drill1", "0.6", "300hrs", "2 days"],
+    ["Loader1", "Electrical", "12yd3", "2000kW", "West", "Underground", "200m", "12081", "400m", "Drill1", "0.6", "300hrs", "2 days"],
+    ["Loader1", "Electrical", "12yd3", "2000kW", "West", "Underground", "200m", "10250m", "400m", "Truck1", "0.75", "200hrs", "1 day"],
+    ["Loader1", "Electrical", "12yd3", "2000kW", "West", "Underground", "200m", "10250m", "400m", "Truck2", "0.9", "200hrs", "2 days"],
+    ["Loader1", "Electrical", "12yd3", "2000kW", "West", "Underground", "800m", "500m", "10m", "Truck3", "1.05", "200hrs", "2 days"],
+    ["Loader1", "Electrical", "12yd3", "2000kW", "", "", "", "", "", "Truck4", "1.2", "200hrs", "2 days"],
+    ["Loader1", "Electrical", "12yd3", "2000kW", "", "", "", "", "", "Truck1", "1.35", "200hrs", "2 days"],
+    ["", "", "", "", "", "", "", "", "", "Truck1", "1.5", "300hrs", "1 day"],
+    ["", "", "", "", "", "", "", "", "", "Truck1", "1.65", "300hrs", "1 day"],
+    ["", "", "", "", "", "", "", "", "", "Truck1", "1.8", "300hrs", "1 day"]
+]
+environment_data = [
+    ["East", "Surface", "200m", "1000m", "800m"],
+    ["West", "Underground", "200m", "12081", "400m"],
+    ["", "", "", "", ""],  # Add more environment data as needed
+]
+# Creating instances using data
+equipment_list = [Equipment(*data) for data in equipment_data]
+environment_list = [Environment(*data) for data in environment_data]
+# Displaying specifications for equipment
+print("Equipment Specifications:")
+for equipment in equipment_list:
+    equipment.display_specs()
+# Displaying specifications for environment
+print("Environmental Specifications:")
+for environment in environment_list:
+    environment.display_specs()
+
+
+
+
+# In[ ]:
+
+
+
+
