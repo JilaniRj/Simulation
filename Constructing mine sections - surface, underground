@@ -7,15 +7,15 @@
 import random
 # Sample CSV data (replace this with your actual data)
 csv_data = """
-Drilling,Type,Capacity,Power,Cost,Section,Type,AreaDepth,AreaLength,AreaWidth
-Drill1,Rotary,2000m,4500kW,NA,Surface,Surface,200m,1000m,800m
-Drill2,Hammer,1500m,3500kW,NA,Surface,Surface,200m,1000m,800m
-Truck1,Diesel,100t,5850HP,NA,Surface,Surface,200m,10250m,400m
-Truck2,Diesel,100t,5850HP,NA,Surface,Surface,200m,10250m,400m
-Loader1,Electrical,12yd3,2000kW,NA,Underground,Underground,200m,12081m,400m
-Loader1,Electrical,12yd3,2000kW,NA,Underground,Underground,200m,10250m,400m
-Loader1,Electrical,12yd3,2000kW,NA,Underground,Underground,200m,10250m,400m
-Loader1,Electrical,12yd3,2000kW,NA,Underground,Underground,800m,500m,10m
+Drilling,Type,Capacity,Power,Section,Type,AreaDepth,AreaLength,AreaWidth
+Drill1,Rotary,2000m,4500kW,Surface,Surface,200m,1000m,800m
+Drill2,Hammer,1500m,3500kW,Surface,Surface,200m,1000m,800m
+Truck1,Diesel,100t,5850HP,Surface,Surface,200m,10250m,400m
+Truck2,Diesel,100t,5850HP,Surface,Surface,200m,10250m,400m
+Loader1,Electrical,12yd3,2000kW,Underground,Underground,200m,12081m,400m
+Loader1,Electrical,12yd3,2000kW,Underground,Underground,200m,10250m,400m
+Loader1,Electrical,12yd3,2000kW,Underground,Underground,200m,10250m,400m
+Loader1,Electrical,12yd3,2000kW,Underground,Underground,800m,500m,10m
 """
 # Split CSV data into lines
 lines = csv_data.strip().split('\n')
