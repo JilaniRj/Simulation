@@ -4,7 +4,7 @@
 # In[1]:
 
 
-#geology
+#geology data
 geology_data = [
     {"Equipment": "Drill1", "Type": "Rotary", "Depth": 200, "Section": "East", "Type_of_Section": "Surface"},
     {"Equipment": "Drill2", "Type": "Hammer", "Depth": 200, "Section": "East", "Type_of_Section": "Surface"},
