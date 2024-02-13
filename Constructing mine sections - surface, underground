@@ -9,7 +9,7 @@ csv_data = """
 Drilling,Type,Capacity,Power,Section,SectionPlace,AreaDepth,AreaLength,AreaWidth #drlling
 Drill1,Rotary,2000m,4500kW,Surface,East,200m,1000m,800m #section
 Drill2,Hammer,1500m,3500kW,Surface,East,200m,1000m,800m
-Truck1,Diesel,100t,5850HP,Surface,East,200m,10250m,400m
+Truck1,Diesel,100t,5850HP,Surface,East,200m,10250m,400m#truck
 Truck2,Diesel,100t,5850HP,Surface,East,200m,10250m,400m
 Loader1,Electrical,12yd3,2000kW,Underground,West,200m,12081m,400m
 Loader2,Electrical,12yd3,2000kW,Underground,West,200m,10250m,400m
