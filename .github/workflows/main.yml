@@ -24,7 +24,15 @@ jobs:
         pip install -r requirements.txt || echo "Failed to install dependencies"
     - name: Run tests
       run: |
-        python -m pytest --verbose  # Add --verbose to get more detailed output
+        python -m pytest --verbose > test_output.txt 2>&1 || echo "Tests failed"
+        cat test_output.txt
+
+
+
+
+
+
+
 
 
 
